@@ -43,7 +43,10 @@ resource "proxmox_virtual_environment_vm" "vm" {
       tags,
       // Ignore description so it's not updated with timestamp
       description,
-    ] + [for idx, val in module.data_vm : disk[idx].size]
+
+      // ignoring disk size for manual resizing
+      disk
+    ]
 
     // trigger for manual rebuilds
     replace_triggered_by = [
