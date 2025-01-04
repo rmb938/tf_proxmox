@@ -2,42 +2,11 @@ resource "terraform_data" "elasticsearch_replacement" {
   input = 1
 }
 
-# Start TODO: turn this into a module for easy of use
-resource "random_uuid" "elasticsearch_data_vm" {
+module "elasticsearch_data_vm" {
+  source       = "./modules/data-vm"
+  datastore_id = "freenas-nfs"
+  size         = 100
 }
-
-# https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#example-attached-disks
-resource "proxmox_virtual_environment_vm" "elasticsearch_data_vm" {
-  lifecycle {
-    prevent_destroy = true
-
-    ignore_changes = [
-      // unsure if this is needed, but just incase
-      disk[0].size
-    ]
-  }
-
-  name      = "data-${random_uuid.elasticsearch_data_vm.result}"
-  node_name = data.proxmox_virtual_environment_vms.family_ubuntu_noble_lts_amd64_hardened.vms[0].node_name
-  started   = false
-  on_boot   = false
-
-  tags = ["data-vm"]
-
-  // this set to unknown bridge to prevent poweron
-  network_device {
-    bridge = "unknown"
-  }
-
-  disk {
-    datastore_id = "freenas-nfs"
-    file_format  = "qcow2"
-    interface    = "scsi1"
-    size         = 100
-  }
-
-}
-# End TODO:
 
 resource "proxmox_virtual_environment_vm" "elasticsearch" {
   lifecycle {
@@ -78,7 +47,7 @@ resource "proxmox_virtual_environment_vm" "elasticsearch" {
   }
 
   dynamic "disk" {
-    for_each = { for idx, val in proxmox_virtual_environment_vm.elasticsearch_data_vm.disk : idx => val }
+    for_each = { for idx, val in module.elasticsearch_data_vm.disk : idx => val }
     iterator = data_disk
     content {
       datastore_id      = data_disk.value["datastore_id"]
