@@ -21,7 +21,7 @@ resource "proxmox_virtual_environment_vm" "data_vm" {
   }
 
   name      = "data-${random_uuid.data_vm.result}"
-  node_name = data.proxmox_virtual_environment_vms.family_ubuntu_noble_lts_amd64_hardened.vms[0].node_name
+  node_name = var.node_name
   started   = false
   on_boot   = false
 

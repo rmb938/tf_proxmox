@@ -4,6 +4,7 @@ resource "terraform_data" "elasticsearch_replacement" {
 
 module "elasticsearch_data_vm" {
   source       = "./modules/data-vm"
+  node_name    = data.proxmox_virtual_environment_vms.family_ubuntu_noble_lts_amd64_hardened.vms[0].node_name
   datastore_id = "freenas-nfs"
   size         = 100
 }
