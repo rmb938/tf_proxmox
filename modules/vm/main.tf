@@ -93,7 +93,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     datastore_id = var.datastore_id
 
     ip_config {
-      ipv4 = {
+      ipv4 {
         address = var.ip_config_ipv4.address
         gateway = var.ip_config_ipv4.gateway
       }
