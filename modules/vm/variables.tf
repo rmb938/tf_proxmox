@@ -22,6 +22,17 @@ variable "network_device_bridge" {
   type = string
 }
 
+variable "ip_config_ipv4" {
+  type = object({
+    address = string
+    gateway = string
+  })
+  default = {
+    address = "dhcp"
+    gateway = null
+  }
+}
+
 variable "replacement" {
   type = number
 }
