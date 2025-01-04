@@ -21,7 +21,7 @@ data "proxmox_virtual_environment_vms" "family" {
 
 module "data_vm" {
   count        = length(var.additional_disks)
-  source       = "../modules/data-vm"
+  source       = "../data-vm"
   node_name    = data.proxmox_virtual_environment_vms.family.vms[0].node_name
   datastore_id = var.datastore_id
   size         = var.additional_disks[count.index]
