@@ -22,6 +22,10 @@ variable "network_device_bridge" {
   type = string
 }
 
+variable "replacement" {
+  type = number
+}
+
 variable "additional_disks" {
   type    = list(number)
   default = []

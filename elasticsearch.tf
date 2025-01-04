@@ -1,7 +1,3 @@
-resource "terraform_data" "elasticsearch_replacement" {
-  input = 1
-}
-
 module "elasticsearch" {
   source                = "./modules/vm"
   name                  = "elasticsearch.rmb938.me"
@@ -10,6 +6,7 @@ module "elasticsearch" {
   network_device_bridge = "vmbr0v52"
   cpu                   = 1
   memory                = 2048
+  replacement           = 1
 }
 
 # module "elasticsearch_data_vm" {

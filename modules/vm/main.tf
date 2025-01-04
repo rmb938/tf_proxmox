@@ -27,6 +27,10 @@ module "data_vm" {
   size         = var.additional_disks[count.index]
 }
 
+resource "terraform_data" "replacement" {
+  input = var.replacement
+}
+
 resource "proxmox_virtual_environment_vm" "vm" {
   lifecycle {
     ignore_changes = [
@@ -46,7 +50,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
     // trigger for manual rebuilds
     replace_triggered_by = [
-      terraform_data.elasticsearch_replacement
+      terraform_data.replacement
     ]
   }
 
