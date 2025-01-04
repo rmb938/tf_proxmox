@@ -25,7 +25,7 @@ resource "proxmox_virtual_environment_vm" "data_vm" {
   started   = false
   on_boot   = false
 
-  tags = ["data-vm"]
+  tags = ["data-vm", "vm-${var.name}"]
 
   // this set to unknown bridge to prevent poweron
   network_device {
