@@ -94,7 +94,8 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = var.ip_config_ipv4.address
+        gateway = var.ip_config_ipv4.gateway
       }
       ipv6 {
         address = "dhcp"
