@@ -13,5 +13,5 @@ module "step_ca_ra" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [10]
-  replacement      = 1
+  replacement      = 2
 }
