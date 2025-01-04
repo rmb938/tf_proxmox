@@ -11,15 +11,10 @@ terraform {
   }
 }
 
-data "proxmox_virtual_environment_vms" "family_ubuntu_noble_lts_amd64_hardened" {
-  tags = [
-    "image",
-    "family-ubuntu-noble-lts-amd64-hardened",
-    "latest",
-  ]
+locals {
+  freenas_nfs_datastore                  = "freenas-nfs"
+  family_ubuntu_noble_lts_amd64_hardened = "ubuntu-noble-lts-amd64-hardened"
 
-  filter {
-    name   = "template"
-    values = ["true"]
-  }
+  vmbr0v23_cidr    = "24"
+  vmbr0v23_gateway = "192.168.23.254"
 }
