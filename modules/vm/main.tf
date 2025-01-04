@@ -93,9 +93,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     datastore_id = var.datastore_id
 
     ip_config {
-      ipv4 {
-        address = "dhcp"
-      }
+      ipv4 = [var.ip_config_ipv4]
       ipv6 {
         address = "dhcp"
       }
