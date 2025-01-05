@@ -68,7 +68,6 @@ resource "proxmox_virtual_environment_vm" "vm" {
     datastore_id = var.datastore_id
     vm_id        = data.proxmox_virtual_environment_vms.family.vms[0].vm_id
     full         = true
-    retries      = 10
   }
 
   dynamic "disk" {
