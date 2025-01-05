@@ -17,7 +17,7 @@ module "haproxy-t1-1" {
 
 module "haproxy-t1-2" {
   source       = "./modules/vm"
-  name         = "haproxy-t1-1.us-homelab1.hl.rmb938.me"
+  name         = "haproxy-t1-2.us-homelab1.hl.rmb938.me"
   image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
@@ -51,7 +51,7 @@ module "haproxy-t2-1" {
 
 module "haproxy-t2-2" {
   source       = "./modules/vm"
-  name         = "haproxy-t2-1.us-homelab1.hl.rmb938.me"
+  name         = "haproxy-t2-2.us-homelab1.hl.rmb938.me"
   image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
