@@ -1,6 +1,6 @@
 module "elasticsearch" {
   source       = "./modules/vm"
-  name         = "elasticsearch.rmb938.me"
+  name         = "elasticsearch.us-homelab1.hl.rmb938.me"
   image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 

@@ -1,6 +1,6 @@
 module "step_ca_ra" {
   source       = "./modules/vm"
-  name         = "step-ca-ra.rmb938.me"
+  name         = "step-ca-ra.us-homelab1.hl.rmb938.me"
   image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
