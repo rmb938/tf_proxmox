@@ -1,5 +1,6 @@
 provider "proxmox" {
-  endpoint = "https://freenas-pm.tailnet-047c.ts.net/"
+  endpoint      = "https://freenas-pm.tailnet-047c.ts.net/"
+  random_vm_ids = true
 
   ssh {
     agent    = true
