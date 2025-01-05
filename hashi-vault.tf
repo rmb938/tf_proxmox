@@ -1,6 +1,6 @@
 module "hashi-vault-1" {
   source       = "./modules/vm"
-  name         = "hashi-vault-1.rmb938.me"
+  name         = "hashi-vault-1.us-homelab1.hl.rmb938.me"
   image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
@@ -18,8 +18,8 @@ module "hashi-vault-1" {
 
 module "hashi-vault-2" {
   source       = "./modules/vm"
-  name         = "hashi-vault-2.rmb938.me"
-  image_family = "ubuntu-noble-lts-amd64-hardened"
+  name         = "hashi-vault-2.us-homelab1.hl.rmb938.me"
+  image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -36,8 +36,8 @@ module "hashi-vault-2" {
 
 module "hashi-vault-3" {
   source       = "./modules/vm"
-  name         = "hashi-vault-3.rmb938.me"
-  image_family = "ubuntu-noble-lts-amd64-hardened"
+  name         = "hashi-vault-3.us-homelab1.hl.rmb938.me"
+  image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
