@@ -48,4 +48,4 @@ jobs:
       - name: Terraform Apply
         env:
           PROXMOX_VE_API_TOKEN: ${{ secrets.PROXMOX_VE_API_TOKEN }}
-        run: terraform apply tfplan
+        run: terraform apply -parallelism=2 tfplan
