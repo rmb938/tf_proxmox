@@ -86,7 +86,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     }
   }
 
-  setartup {
+  startup {
     order    = "1000"
     up_delay = "300"
   }
