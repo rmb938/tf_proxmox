@@ -86,6 +86,11 @@ resource "proxmox_virtual_environment_vm" "vm" {
     }
   }
 
+  startup {
+    order    = "1000"
+    up_delay = "300"
+  }
+
   network_device {
     bridge = var.network_device_bridge
   }
