@@ -1,6 +1,6 @@
 module "hashi-consul-1" {
   source       = "./modules/vm"
-  name         = "consul-server-1.us-homelab1.hl.rmb938.me"
+  name         = "hashi-consul-1.us-homelab1.hl.rmb938.me"
   image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
@@ -18,7 +18,7 @@ module "hashi-consul-1" {
 
 module "hashi-consul-2" {
   source       = "./modules/vm"
-  name         = "consul-server-2.us-homelab1.hl.rmb938.me"
+  name         = "hashi-consul-2.us-homelab1.hl.rmb938.me"
   image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
@@ -36,7 +36,7 @@ module "hashi-consul-2" {
 
 module "hashi-consul-3" {
   source       = "./modules/vm"
-  name         = "consul-server-3.us-homelab1.hl.rmb938.me"
+  name         = "hashi-consul-3.us-homelab1.hl.rmb938.me"
   image_family = local.family_ubuntu_noble_lts_amd64_hardened
   datastore_id = local.freenas_nfs_datastore
 
