@@ -15,3 +15,4 @@ module "prometheus" {
   additional_disks = [100]
   replacement      = 1
 }
+
