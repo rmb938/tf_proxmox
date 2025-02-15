@@ -41,3 +41,13 @@ variable "additional_disks" {
   type    = list(number)
   default = []
 }
+
+variable "startup_order" {
+  type    = number
+  default = 2000
+}
+
+variable "startup_delay" {
+  type    = number
+  default = 0
+}

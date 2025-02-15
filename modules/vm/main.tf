@@ -87,8 +87,8 @@ resource "proxmox_virtual_environment_vm" "vm" {
   }
 
   startup {
-    order    = "1000"
-    up_delay = "0"
+    order    = tostring(var.startup_order)
+    up_delay = tostring(var.startup_delay)
   }
 
   network_device {
