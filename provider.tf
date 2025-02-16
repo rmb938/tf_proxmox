@@ -1,5 +1,5 @@
 provider "proxmox" {
-  endpoint      = "https://freenas-pm.tailnet-047c.ts.net/"
+  endpoint      = "https://freenas-pm.rmb938.me:8006"
   random_vm_ids = true
 
   ssh {
@@ -8,7 +8,7 @@ provider "proxmox" {
 
     node {
       name    = "freenas-pm"
-      address = "freenas-pm.tailnet-047c.ts.net"
+      address = "freenas-pm.rmb938.me"
     }
   }
 }
