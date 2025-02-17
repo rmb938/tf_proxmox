@@ -31,7 +31,7 @@ EOF
 module "haproxy-t1-1" {
   source       = "./modules/vm"
   name         = "haproxy-t1-1.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_hardened
+  image_family = local.family_ubuntu_noble_lts_amd64_application
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -42,7 +42,7 @@ module "haproxy-t1-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.haproxy_t1_cloud_config
 }
@@ -50,7 +50,7 @@ module "haproxy-t1-1" {
 module "haproxy-t1-2" {
   source       = "./modules/vm"
   name         = "haproxy-t1-2.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_hardened
+  image_family = local.family_ubuntu_noble_lts_amd64_application
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -61,7 +61,7 @@ module "haproxy-t1-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.haproxy_t1_cloud_config
 }
@@ -69,7 +69,7 @@ module "haproxy-t1-2" {
 module "haproxy-t2-1" {
   source       = "./modules/vm"
   name         = "haproxy-t2-1.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_hardened
+  image_family = local.family_ubuntu_noble_lts_amd64_application
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -80,7 +80,7 @@ module "haproxy-t2-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.haproxy_t2_cloud_config
 }
@@ -88,7 +88,7 @@ module "haproxy-t2-1" {
 module "haproxy-t2-2" {
   source       = "./modules/vm"
   name         = "haproxy-t2-2.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_hardened
+  image_family = local.family_ubuntu_noble_lts_amd64_application
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -99,7 +99,7 @@ module "haproxy-t2-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.haproxy_t2_cloud_config
 }
