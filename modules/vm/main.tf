@@ -40,11 +40,12 @@ resource "proxmox_virtual_environment_file" "user_data" {
   source_raw {
     data = <<-EOF
 #cloud-config
-hostname: ${var.name}
+manage_etc_hosts: true
+hostname: ${split(".", "${var.name}")[0]}
 fqdn: ${var.name}
 users:
   - name: ubuntu
-    ssh-authorized-keys:
+    ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWVnbWnQpWJLEYMpIc4GcURFIQ574QSubXc5sfQ2Rzs rbelgrave@magic-muffin.rmb938.me
 ${var.cloud_config}
 EOF
@@ -65,7 +66,7 @@ resource "proxmox_virtual_environment_file" "meta_data" {
     data = <<-EOF
 instance-id: ${random_uuid.instance_id.result}
 local-hostname: ${var.name}
-hostname: ${var.name}
+hostname: ${split(".", "${var.name}")[0]}
 EOF
 
     file_name = "${var.name}-meta-data-cloud-config.yaml"
