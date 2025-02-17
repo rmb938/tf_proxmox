@@ -51,3 +51,8 @@ variable "startup_delay" {
   type    = number
   default = 0
 }
+
+variable "cloud_config" {
+  type    = string
+  default = ""
+}
