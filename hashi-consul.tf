@@ -1,4 +1,5 @@
 locals {
+  # TODO: move the CONSUL_ROLE into the hashi-consul image
   hashi_consul_cloud_config = <<-EOF
 runcmd:
   - /usr/bin/systemctl set-environment CONSUL_ROLE=hashi-consul
