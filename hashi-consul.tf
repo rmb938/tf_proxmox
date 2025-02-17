@@ -1,3 +1,14 @@
+locals {
+  hashi_consul_cloud_config = <<-EOF
+runcmd:
+  - systemctl set-environment CONSUL_ROLE=hashi-consul
+  - echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=hashi-consul" | tee /etc/systemd/system.conf.d/consul_role.conf
+  # Not enabling or starting because consul needs to overwrite it's config
+  # - systemctl enable consul-template-consul.service
+  # - systemctl start consul-template-consul.service
+EOF
+}
+
 module "hashi-consul-1" {
   source       = "./modules/vm"
   name         = "hashi-consul-1.us-homelab1.hl.rmb938.me"
@@ -14,6 +25,8 @@ module "hashi-consul-1" {
   memory           = 2 * 1024
   additional_disks = [100]
   replacement      = 1
+
+  cloud_config = local.hashi_consul_cloud_config
 }
 
 module "hashi-consul-2" {
@@ -32,6 +45,8 @@ module "hashi-consul-2" {
   memory           = 2 * 1024
   additional_disks = [100]
   replacement      = 1
+
+  cloud_config = local.hashi_consul_cloud_config
 }
 
 module "hashi-consul-3" {
@@ -50,5 +65,7 @@ module "hashi-consul-3" {
   memory           = 2 * 1024
   additional_disks = [100]
   replacement      = 1
+
+  cloud_config = local.hashi_consul_cloud_config
 }
 
