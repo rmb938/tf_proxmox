@@ -32,7 +32,7 @@ resource "terraform_data" "replacement" {
   input = var.replacement
 }
 
-resource "proxmox_virtual_environment_file" "cloud_config" {
+resource "proxmox_virtual_environment_file" "user_data" {
   content_type = "snippets"
   datastore_id = var.datastore_id
   node_name    = data.proxmox_virtual_environment_vms.family.vms[0].node_name
@@ -41,6 +41,7 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
     data = <<-EOF
 #cloud-config
 hostname: ${var.name}
+fqdn: ${var.name}
 users:
   - name: ubuntu
     ssh-authorized-keys:
@@ -48,7 +49,26 @@ users:
 ${var.cloud_config}
 EOF
 
-    file_name = "${var.name}-cloud-config.yaml"
+    file_name = "${var.name}-user-data-cloud-config.yaml"
+  }
+}
+
+resource "random_uuid" "instance_id" {
+}
+
+resource "proxmox_virtual_environment_file" "meta_data" {
+  content_type = "snippets"
+  datastore_id = var.datastore_id
+  node_name    = data.proxmox_virtual_environment_vms.family.vms[0].node_name
+
+  source_raw {
+    data = <<-EOF
+instance-id: ${random_uuid.data_vm.result}
+local-hostname: ${var.name}
+hostname: ${var.name}
+EOF
+
+    file_name = "${var.name}-meta-data-cloud-config.yaml"
   }
 }
 
@@ -128,7 +148,8 @@ resource "proxmox_virtual_environment_vm" "vm" {
       }
     }
 
-    user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
+    meta_data_file_id = proxmox_virtual_environment_file.meta_data.id
+    user_data_file_id = proxmox_virtual_environment_file.user_data.id
   }
 
   agent {
