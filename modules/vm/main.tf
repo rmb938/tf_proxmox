@@ -41,7 +41,7 @@ resource "proxmox_virtual_environment_file" "user_data" {
     data = <<-EOF
 #cloud-config
 manage_etc_hosts: true
-hostname: ${split(".", "${var.name}")}
+hostname: ${split(".", "${var.name}")[0]}
 fqdn: ${var.name}
 users:
   - name: ubuntu
@@ -66,7 +66,7 @@ resource "proxmox_virtual_environment_file" "meta_data" {
     data = <<-EOF
 instance-id: ${random_uuid.instance_id.result}
 local-hostname: ${var.name}
-hostname: ${split(".", "${var.name}")}
+hostname: ${split(".", "${var.name}")[0]}
 EOF
 
     file_name = "${var.name}-meta-data-cloud-config.yaml"
