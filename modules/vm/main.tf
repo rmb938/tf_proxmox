@@ -46,9 +46,9 @@ users:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWVnbWnQpWJLEYMpIc4GcURFIQ574QSubXc5sfQ2Rzs rbelgrave@magic-muffin.rmb938.me
 ${var.cloud_config}
 EOF
-  }
 
-  file_name = "${var.name}-cloud-config.yaml"
+    file_name = "${var.name}-cloud-config.yaml"
+  }
 }
 
 resource "proxmox_virtual_environment_vm" "vm" {
