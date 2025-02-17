@@ -1,6 +1,6 @@
 locals {
   # TODO: move the CONSUL_ROLE into the prometheus image
-  haproxy_t1_cloud_config = <<-EOF
+  prometheus_cloud_config = <<-EOF
 runcmd:
   - /usr/bin/systemctl set-environment CONSUL_ROLE=prometheus
   - /usr/bin/echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=prometheus" | /usr/bin/tee /etc/systemd/system.conf.d/consul_role.conf
@@ -26,6 +26,6 @@ module "prometheus" {
   additional_disks = [100]
   replacement      = 1
 
-  cloud_config = local.haproxy_t1_cloud_config
+  cloud_config = local.prometheus_cloud_config
 }
 
