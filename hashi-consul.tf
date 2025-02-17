@@ -3,7 +3,7 @@ locals {
 runcmd:
   - systemctl set-environment CONSUL_ROLE=hashi-consul
   - echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=hashi-consul" | tee /etc/systemd/system.conf.d/consul_role.conf
-  # Not enabling or starting because consul needs to overwrite it's config
+  # Not enabling or starting because consul needs to overwrite it's config before starting
   # - systemctl enable consul-template-consul.service
   # - systemctl start consul-template-consul.service
 EOF
