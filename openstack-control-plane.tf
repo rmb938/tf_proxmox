@@ -14,7 +14,7 @@ module "openstack-postgres-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 3
+  replacement      = 4
 }
 
 module "openstack-postgres-2" {
