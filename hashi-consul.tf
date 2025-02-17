@@ -1,11 +1,11 @@
 locals {
   hashi_consul_cloud_config = <<-EOF
 runcmd:
-  - systemctl set-environment CONSUL_ROLE=hashi-consul
-  - echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=hashi-consul" | tee /etc/systemd/system.conf.d/consul_role.conf
+  - /usr/bin/systemctl set-environment CONSUL_ROLE=hashi-consul
+  - /usr/bin/echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=hashi-consul" | /usr/bin/tee /etc/systemd/system.conf.d/consul_role.conf
   # Not enabling or starting because consul needs to overwrite it's config before starting
-  # - systemctl enable consul-template-consul.service
-  # - systemctl start consul-template-consul.service
+  # - /usr/bin/systemctl enable consul-template-consul.service
+  # - /usr/bin/systemctl start consul-template-consul.service
 EOF
 }
 
