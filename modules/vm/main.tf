@@ -32,6 +32,25 @@ resource "terraform_data" "replacement" {
   input = var.replacement
 }
 
+resource "proxmox_virtual_environment_file" "cloud_config" {
+  content_type = "snippets"
+  datastore_id = var.datastore_id
+  node_name    = data.proxmox_virtual_environment_vms.family.vms[0].node_name
+
+  source_raw {
+    data = <<-EOF
+#cloud-config
+users:
+  - name: ubuntu
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWVnbWnQpWJLEYMpIc4GcURFIQ574QSubXc5sfQ2Rzs rbelgrave@magic-muffin.rmb938.me
+${var.cloud_config}
+EOF
+  }
+
+  file_name = "${var.name}-cloud-config.yaml"
+}
+
 resource "proxmox_virtual_environment_vm" "vm" {
   lifecycle {
     ignore_changes = [
@@ -108,12 +127,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
       }
     }
 
-    user_account {
-      username = "ubuntu" # If this isn't provded the username ends up being " "
-      keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWVnbWnQpWJLEYMpIc4GcURFIQ574QSubXc5sfQ2Rzs rbelgrave@magic-muffin.rmb938.me"
-      ]
-    }
+    user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
   }
 
   agent {
