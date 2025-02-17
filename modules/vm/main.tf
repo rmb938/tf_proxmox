@@ -40,6 +40,7 @@ resource "proxmox_virtual_environment_file" "cloud_config" {
   source_raw {
     data = <<-EOF
 #cloud-config
+fqdn: ${var.name}
 users:
   - name: ubuntu
     ssh-authorized-keys:
