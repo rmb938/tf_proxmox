@@ -63,7 +63,7 @@ resource "proxmox_virtual_environment_file" "meta_data" {
 
   source_raw {
     data = <<-EOF
-instance-id: ${random_uuid.data_vm.result}
+instance-id: ${random_uuid.instance_id.result}
 local-hostname: ${var.name}
 hostname: ${var.name}
 EOF
