@@ -1,5 +1,3 @@
-
-# Postgres
 locals {
   # TODO: move the CONSUL_ROLE into the openstack-postgres image
   openstack_postgres_cloud_config = <<-EOF
@@ -11,6 +9,7 @@ runcmd:
 EOF
 }
 
+# Postgres
 module "openstack-postgres-1" {
   source       = "./modules/vm"
   name         = "openstack-postgres-1.us-homelab1.hl.rmb938.me"
@@ -69,76 +68,4 @@ module "openstack-postgres-3" {
   replacement      = 3
 
   cloud_config = local.openstack_postgres_cloud_config
-}
-
-# RabbitMQ
-locals {
-  # TODO: move the CONSUL_ROLE into the openstack-rabbitmq image
-  openstack_rabbitmq_cloud_config = <<-EOF
-runcmd:
-  - /usr/bin/systemctl set-environment CONSUL_ROLE=openstack-rabbitmq
-  - /usr/bin/echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=openstack-rabbitmq" | /usr/bin/tee /etc/systemd/system.conf.d/consul_role.conf
-  - /usr/bin/systemctl enable consul-template-consul.service
-  - /usr/bin/systemctl start consul-template-consul.service
-EOF
-}
-
-module "openstack-rabbitmq-1" {
-  source       = "./modules/vm"
-  name         = "openstack-rabbitmq-1.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
-  datastore_id = local.freenas_nfs_datastore
-
-  network_device_bridge = "vmbr0v23"
-  ip_config_ipv4 = {
-    address = "192.168.23.73/${local.vmbr0v23_cidr}"
-    gateway = local.vmbr0v23_gateway
-  }
-
-  cpu              = 1
-  memory           = 2 * 1024
-  additional_disks = [100]
-  replacement      = 1
-
-  cloud_config = local.openstack_rabbitmq_cloud_config
-}
-
-module "openstack-rabbitmq-2" {
-  source       = "./modules/vm"
-  name         = "openstack-rabbitmq-2.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
-  datastore_id = local.freenas_nfs_datastore
-
-  network_device_bridge = "vmbr0v23"
-  ip_config_ipv4 = {
-    address = "192.168.23.74/${local.vmbr0v23_cidr}"
-    gateway = local.vmbr0v23_gateway
-  }
-
-  cpu              = 1
-  memory           = 2 * 1024
-  additional_disks = [100]
-  replacement      = 1
-
-  cloud_config = local.openstack_rabbitmq_cloud_config
-}
-
-module "openstack-rabbitmq-3" {
-  source       = "./modules/vm"
-  name         = "openstack-rabbitmq-3.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
-  datastore_id = local.freenas_nfs_datastore
-
-  network_device_bridge = "vmbr0v23"
-  ip_config_ipv4 = {
-    address = "192.168.23.75/${local.vmbr0v23_cidr}"
-    gateway = local.vmbr0v23_gateway
-  }
-
-  cpu              = 1
-  memory           = 2 * 1024
-  additional_disks = [100]
-  replacement      = 1
-
-  cloud_config = local.openstack_rabbitmq_cloud_config
 }
