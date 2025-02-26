@@ -66,7 +66,7 @@ module "openstack-postgres-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 3
+  replacement      = 5
 
   cloud_config = local.openstack_postgres_cloud_config
 }
