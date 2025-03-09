@@ -46,7 +46,7 @@ fqdn: ${var.name}
 users:
   - name: ubuntu
     ssh_authorized_keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWVnbWnQpWJLEYMpIc4GcURFIQ574QSubXc5sfQ2Rzs rbelgrave@magic-muffin.rmb938.me
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFutfN7VVJImc1/URq84u6Vn/85Qj9G3B1zqORh31TT9 rbelgrave@magic-pie.rmb938.me
 ${var.cloud_config}
 EOF
 
@@ -87,7 +87,10 @@ resource "proxmox_virtual_environment_vm" "vm" {
       description,
 
       // ignoring disk size for manual resizing
-      disk
+      disk,
+
+      // ignoring user data changes
+      initialization[0].user_data_file_id,
     ]
 
     // trigger for manual rebuilds
