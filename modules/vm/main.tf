@@ -87,7 +87,10 @@ resource "proxmox_virtual_environment_vm" "vm" {
       description,
 
       // ignoring disk size for manual resizing
-      disk
+      disk,
+
+      // ignoring user data changes
+      initialization.user_data_file_id,
     ]
 
     // trigger for manual rebuilds
