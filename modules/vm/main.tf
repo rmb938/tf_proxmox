@@ -90,7 +90,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
       disk,
 
       // ignoring user data changes
-      initialization.user_data_file_id,
+      initialization[0].user_data_file_id,
     ]
 
     // trigger for manual rebuilds
