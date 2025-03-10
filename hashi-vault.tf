@@ -13,7 +13,7 @@ module "hashi-vault-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 2
 }
 
 module "hashi-vault-2" {
@@ -31,7 +31,7 @@ module "hashi-vault-2" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 2
 }
 
 module "hashi-vault-3" {
@@ -49,6 +49,6 @@ module "hashi-vault-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 2
 }
 
