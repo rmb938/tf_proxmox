@@ -4,10 +4,8 @@
 # runcmd:
 #   - /usr/bin/systemctl set-environment CONSUL_ROLE=haproxy-t1
 #   - /usr/bin/echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=haproxy-t1" | /usr/bin/tee /etc/systemd/system.conf.d/consul_role.conf
-  
 #   # Overwrite hostname since HAProxy doesn't exist yet
 #   - /usr/bin/echo "VAULT_ADDR=https://hashi-vault-$(/usr/bin/hostname | /usr/bin/tail -c 2).us-homelab1.hl.rmb938.me:8200" | /usr/bin/tee /etc/vault.d/vault.env
-  
 #   - /usr/bin/systemctl enable consul-template-consul.service
 #   - /usr/bin/systemctl start consul-template-consul.service
 # EOF
@@ -19,10 +17,8 @@
 # runcmd:
 #   - /usr/bin/systemctl set-environment CONSUL_ROLE=haproxy-t2
 #   - /usr/bin/echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=haproxy-t2" | /usr/bin/tee /etc/systemd/system.conf.d/consul_role.conf
-  
 #   # Overwrite hostname since HAProxy doesn't exist yet
 #   - /usr/bin/echo "VAULT_ADDR=https://hashi-vault-$(/usr/bin/hostname | /usr/bin/tail -c 2).us-homelab1.hl.rmb938.me:8200" | /usr/bin/tee /etc/vault.d/vault.env
-  
 #   - /usr/bin/systemctl enable consul-template-consul.service
 #   - /usr/bin/systemctl start consul-template-consul.service
 # EOF
