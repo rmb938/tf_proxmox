@@ -25,7 +25,7 @@ module "hashi-consul-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 2
 
   cloud_config = local.hashi_consul_cloud_config
 }
@@ -45,7 +45,7 @@ module "hashi-consul-2" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 2
 
   cloud_config = local.hashi_consul_cloud_config
 }
@@ -65,7 +65,7 @@ module "hashi-consul-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 2
 
   cloud_config = local.hashi_consul_cloud_config
 }
