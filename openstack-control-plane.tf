@@ -9,6 +9,11 @@ runcmd:
   - /usr/bin/systemctl enable consul-template-consul.service
   - /usr/bin/systemctl start consul-template-consul.service
 EOF
+
+  openstack_postgres_cloud_config_new = <<-EOF
+bootcmd:
+  - /usr/bin/echo "CONSUL_ROLE=openstack-postgres" >> /etc/cloud-environment
+EOF
 }
 
 module "openstack-postgres-1" {
@@ -66,9 +71,9 @@ module "openstack-postgres-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 6
+  replacement      = 7
 
-  cloud_config = local.openstack_postgres_cloud_config
+  cloud_config = local.openstack_postgres_cloud_config_new
 }
 
 # RabbitMQ
