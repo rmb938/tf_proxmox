@@ -1,6 +1,6 @@
 locals {
   prometheus_cloud_config = <<-EOF
-runcmd:
+bootcmd:
   - /usr/bin/echo "CONSUL_ROLE=prometheus" >> /etc/cloud-environment
 EOF
 }
@@ -20,7 +20,7 @@ module "prometheus" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 4
+  replacement      = 5
 
   cloud_config = local.prometheus_cloud_config
 }
