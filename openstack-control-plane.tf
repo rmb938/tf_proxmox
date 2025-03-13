@@ -9,6 +9,7 @@ runcmd:
   - /usr/bin/systemctl enable consul-template-consul.service
   - /usr/bin/systemctl start consul-template-consul.service
 EOF
+
   openstack_postgres_cloud_config_new = <<-EOF
 bootcmd:
   - /usr/bin/echo "CONSUL_ROLE=openstack-postgres" >> /etc/cloud-environment
