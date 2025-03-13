@@ -1,3 +1,10 @@
+locals {
+  prometheus_cloud_config = <<-EOF
+runcmd:
+  - /usr/bin/echo "CONSUL_ROLE=prometheus" >> /etc/cloud-environment
+EOF
+}
+
 module "prometheus" {
   source       = "./modules/vm"
   name         = "prometheus.us-homelab1.hl.rmb938.me"
@@ -13,6 +20,8 @@ module "prometheus" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 3
+  replacement      = 4
+
+  cloud_config = local.prometheus_cloud_config
 }
 
