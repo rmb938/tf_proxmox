@@ -1,16 +1,7 @@
 
 # Postgres
 locals {
-  # TODO: move the CONSUL_ROLE into the openstack-postgres image
   openstack_postgres_cloud_config = <<-EOF
-runcmd:
-  - /usr/bin/systemctl set-environment CONSUL_ROLE=openstack-postgres
-  - /usr/bin/echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=openstack-postgres" | /usr/bin/tee /etc/systemd/system.conf.d/consul_role.conf
-  - /usr/bin/systemctl enable consul-template-consul.service
-  - /usr/bin/systemctl start consul-template-consul.service
-EOF
-
-  openstack_postgres_cloud_config_new = <<-EOF
 bootcmd:
   - /usr/bin/echo "CONSUL_ROLE=openstack-postgres" >> /etc/cloud-environment
 EOF
@@ -19,7 +10,7 @@ EOF
 module "openstack-postgres-1" {
   source       = "./modules/vm"
   name         = "openstack-postgres-1.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
+  image_family = "ubuntu-noble-lts-amd64-patroni"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -31,7 +22,7 @@ module "openstack-postgres-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 6
+  replacement      = 8
 
   cloud_config = local.openstack_postgres_cloud_config
 }
@@ -39,7 +30,7 @@ module "openstack-postgres-1" {
 module "openstack-postgres-2" {
   source       = "./modules/vm"
   name         = "openstack-postgres-2.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
+  image_family = "ubuntu-noble-lts-amd64-patroni"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -51,7 +42,7 @@ module "openstack-postgres-2" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 6
+  replacement      = 8
 
   cloud_config = local.openstack_postgres_cloud_config
 }
@@ -73,7 +64,7 @@ module "openstack-postgres-3" {
   additional_disks = [100]
   replacement      = 8
 
-  cloud_config = local.openstack_postgres_cloud_config_new
+  cloud_config = local.openstack_postgres_cloud_config
 }
 
 # RabbitMQ
