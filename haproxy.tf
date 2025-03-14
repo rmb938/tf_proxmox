@@ -14,13 +14,10 @@ EOF
 locals {
   # TODO: move the CONSUL_ROLE into the haproxy-t2 image
   haproxy_t2_cloud_config = <<-EOF
-runcmd:
-  - /usr/bin/systemctl set-environment CONSUL_ROLE=haproxy-t2
-  - /usr/bin/echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=haproxy-t2" | /usr/bin/tee /etc/systemd/system.conf.d/consul_role.conf
+bootcmd:
+  - /usr/bin/echo "CONSUL_ROLE=haproxy-t2" >> /etc/cloud-environment
   # Overwrite hostname since HAProxy doesn't exist yet
   - /usr/bin/echo "VAULT_ADDR=https://hashi-vault-$(/usr/bin/hostname | /usr/bin/tail -c 2).us-homelab1.hl.rmb938.me:8200" | /usr/bin/tee /etc/vault.d/vault.env
-  - /usr/bin/systemctl enable consul-template-consul.service
-  - /usr/bin/systemctl start consul-template-consul.service
 EOF
 }
 
@@ -65,7 +62,7 @@ module "haproxy-t1-2" {
 module "haproxy-t2-1" {
   source       = "./modules/vm"
   name         = "haproxy-t2-1.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
+  image_family = "ubuntu-noble-lts-amd64-haproxy-t2"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -76,7 +73,7 @@ module "haproxy-t2-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 3
+  replacement = 4
 
   cloud_config = local.haproxy_t2_cloud_config
 }
@@ -84,7 +81,7 @@ module "haproxy-t2-1" {
 module "haproxy-t2-2" {
   source       = "./modules/vm"
   name         = "haproxy-t2-2.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
+  image_family = "ubuntu-noble-lts-amd64-haproxy-t2"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -95,7 +92,7 @@ module "haproxy-t2-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 3
+  replacement = 4
 
   cloud_config = local.haproxy_t2_cloud_config
 }
