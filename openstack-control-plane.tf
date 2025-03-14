@@ -64,7 +64,7 @@ module "openstack-postgres-3" {
   additional_disks = [100]
   replacement      = 8
 
-  cloud_config = local.openstack_postgres_cloud_config_new
+  cloud_config = local.openstack_postgres_cloud_config
 }
 
 # RabbitMQ
