@@ -59,7 +59,7 @@ module "openstack-postgres-2" {
 module "openstack-postgres-3" {
   source       = "./modules/vm"
   name         = "openstack-postgres-3.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
+  image_family = "ubuntu-noble-lts-amd64-patroni"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -71,7 +71,7 @@ module "openstack-postgres-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 7
+  replacement      = 8
 
   cloud_config = local.openstack_postgres_cloud_config_new
 }
