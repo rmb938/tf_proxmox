@@ -137,20 +137,16 @@ module "openstack-rabbitmq-3" {
 
 # Keystone
 locals {
-  # TODO: move the CONSUL_ROLE into the openstack-keystone image
   openstack_keystone_cloud_config = <<-EOF
-runcmd:
-  - /usr/bin/systemctl set-environment CONSUL_ROLE=openstack-keystone
-  - /usr/bin/echo -e "[Manager]\nDefaultEnvironment=CONSUL_ROLE=openstack-keystone" | /usr/bin/tee /etc/systemd/system.conf.d/consul_role.conf
-  - /usr/bin/systemctl enable consul-template-consul.service
-  - /usr/bin/systemctl start consul-template-consul.service
+bootcmd:
+  - /usr/bin/echo "CONSUL_ROLE=openstack-keystone" >> /etc/cloud-environment
 EOF
 }
 
 module "openstack-keystone-1" {
   source       = "./modules/vm"
   name         = "openstack-keystone-1.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
+  image_family = "ubuntu-noble-lts-amd64-openstack-keystone"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -161,7 +157,7 @@ module "openstack-keystone-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 2
+  replacement = 3
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -169,7 +165,7 @@ module "openstack-keystone-1" {
 module "openstack-keystone-2" {
   source       = "./modules/vm"
   name         = "openstack-keystone-2.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
+  image_family = "ubuntu-noble-lts-amd64-openstack-keystone"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -180,7 +176,7 @@ module "openstack-keystone-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 2
+  replacement = 3
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -188,7 +184,7 @@ module "openstack-keystone-2" {
 module "openstack-keystone-3" {
   source       = "./modules/vm"
   name         = "openstack-keystone-3.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application
+  image_family = "ubuntu-noble-lts-amd64-openstack-keystone"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -199,7 +195,7 @@ module "openstack-keystone-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 2
+  replacement = 3
 
   cloud_config = local.openstack_keystone_cloud_config
 }
