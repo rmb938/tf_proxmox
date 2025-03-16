@@ -199,3 +199,69 @@ module "openstack-keystone-3" {
 
   cloud_config = local.openstack_keystone_cloud_config
 }
+
+
+# Glance
+locals {
+  openstack_glance_cloud_config = <<-EOF
+bootcmd:
+  - /usr/bin/echo "CONSUL_ROLE=openstack-glance" >> /etc/cloud-environment
+EOF
+}
+
+module "openstack-glance-1" {
+  source       = "./modules/vm"
+  name         = "openstack-glance-1.us-homelab1.hl.rmb938.me"
+  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.79/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 1
+
+  cloud_config = local.openstack_glance_cloud_config
+}
+
+module "openstack-glance-2" {
+  source       = "./modules/vm"
+  name         = "openstack-glance-2.us-homelab1.hl.rmb938.me"
+  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.80/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 1
+
+  cloud_config = local.openstack_glance_cloud_config
+}
+
+module "openstack-glance-3" {
+  source       = "./modules/vm"
+  name         = "openstack-glance-3.us-homelab1.hl.rmb938.me"
+  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.81/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 1
+
+  cloud_config = local.openstack_glance_cloud_config
+}
