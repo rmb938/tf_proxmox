@@ -90,7 +90,7 @@ module "openstack-rabbitmq-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 3
+  replacement      = 4
 
   cloud_config = local.openstack_rabbitmq_cloud_config
 }
@@ -110,7 +110,7 @@ module "openstack-rabbitmq-2" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 3
+  replacement      = 4
 
   cloud_config = local.openstack_rabbitmq_cloud_config
 }
@@ -130,7 +130,7 @@ module "openstack-rabbitmq-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 3
+  replacement      = 4
 
   cloud_config = local.openstack_rabbitmq_cloud_config
 }
@@ -157,7 +157,7 @@ module "openstack-keystone-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 8
+  replacement = 9
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -176,7 +176,7 @@ module "openstack-keystone-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 8
+  replacement = 9
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -195,7 +195,7 @@ module "openstack-keystone-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 8
+  replacement = 9
 
   cloud_config = local.openstack_keystone_cloud_config
 }
