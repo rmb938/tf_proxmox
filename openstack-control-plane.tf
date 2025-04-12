@@ -90,7 +90,7 @@ module "openstack-rabbitmq-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 4
+  replacement      = 5
 
   cloud_config = local.openstack_rabbitmq_cloud_config
 }
@@ -110,7 +110,7 @@ module "openstack-rabbitmq-2" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 4
+  replacement      = 5
 
   cloud_config = local.openstack_rabbitmq_cloud_config
 }
@@ -130,7 +130,7 @@ module "openstack-rabbitmq-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 4
+  replacement      = 5
 
   cloud_config = local.openstack_rabbitmq_cloud_config
 }
@@ -288,7 +288,7 @@ module "openstack-cinder-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 5
+  replacement = 6
 
   cloud_config = local.openstack_cinder_cloud_config
 }
