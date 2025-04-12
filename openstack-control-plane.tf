@@ -277,7 +277,7 @@ EOF
 module "openstack-cinder-1" {
   source       = "./modules/vm"
   name         = "openstack-cinder-1.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  image_family = "ubuntu-noble-lts-amd64-openstack-cinder"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
