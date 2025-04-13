@@ -39,8 +39,7 @@ module "haproxy-t1-1" {
 
   cloud_config = local.haproxy_t1_cloud_config
 
-  startup_order = 1003
-  startup_delay = 300
+  startup_order = 1005
 }
 
 module "haproxy-t1-2" {
@@ -60,9 +59,6 @@ module "haproxy-t1-2" {
   replacement = 5
 
   cloud_config = local.haproxy_t1_cloud_config
-
-  startup_order = 1003
-  startup_delay = 300
 }
 
 module "haproxy-t2-1" {
@@ -83,7 +79,7 @@ module "haproxy-t2-1" {
 
   cloud_config = local.haproxy_t2_cloud_config
 
-  startup_order = 1003
+  startup_order = 1006
   startup_delay = 300
 }
 
@@ -104,7 +100,4 @@ module "haproxy-t2-2" {
   replacement = 5
 
   cloud_config = local.haproxy_t2_cloud_config
-
-  startup_order = 1003
-  startup_delay = 300
 }
