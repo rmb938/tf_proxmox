@@ -293,6 +293,7 @@ module "openstack-cinder-1" {
   cloud_config = local.openstack_cinder_cloud_config
 }
 
+
 module "openstack-cinder-2" {
   source       = "./modules/vm"
   name         = "openstack-cinder-2.us-homelab1.hl.rmb938.me"
