@@ -288,7 +288,7 @@ module "openstack-cinder-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 7
+  replacement = 8
 
   cloud_config = local.openstack_cinder_cloud_config
 }
