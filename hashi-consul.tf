@@ -28,6 +28,9 @@ module "hashi-consul-1" {
   replacement      = 2
 
   cloud_config = local.hashi_consul_cloud_config
+
+  startup_order = 1002
+  startup_delay = 300
 }
 
 module "hashi-consul-2" {
@@ -48,6 +51,9 @@ module "hashi-consul-2" {
   replacement      = 2
 
   cloud_config = local.hashi_consul_cloud_config
+
+  startup_order = 1002
+  startup_delay = 300
 }
 
 module "hashi-consul-3" {
@@ -68,5 +74,8 @@ module "hashi-consul-3" {
   replacement      = 2
 
   cloud_config = local.hashi_consul_cloud_config
+
+  startup_order = 1002
+  startup_delay = 300
 }
 

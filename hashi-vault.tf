@@ -14,6 +14,9 @@ module "hashi-vault-1" {
   memory           = 2 * 1024
   additional_disks = [100]
   replacement      = 2
+
+  startup_order = 1001
+  startup_delay = 300
 }
 
 module "hashi-vault-2" {
@@ -32,6 +35,9 @@ module "hashi-vault-2" {
   memory           = 2 * 1024
   additional_disks = [100]
   replacement      = 2
+
+  startup_order = 1001
+  startup_delay = 300
 }
 
 module "hashi-vault-3" {
@@ -50,5 +56,8 @@ module "hashi-vault-3" {
   memory           = 2 * 1024
   additional_disks = [100]
   replacement      = 2
+
+  startup_order = 1001
+  startup_delay = 300
 }
 
