@@ -56,3 +56,8 @@ variable "cloud_config" {
   type    = string
   default = ""
 }
+
+variable "hostpci_mappings" {
+  type    = list(string)
+  default = []
+}
