@@ -24,7 +24,7 @@ resource "proxmox_virtual_environment_hardware_mapping_pci" "connextx-4-8" {
     {
       id = "15b3:1016"
 
-      iommu_group = 67 + count.index
+      iommu_group = 74
       node        = "freenas-pm"
       path        = "0000:e1:01.0"
 
