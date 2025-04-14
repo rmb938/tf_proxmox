@@ -226,6 +226,10 @@ module "openstack-glance-1" {
   replacement = 1
 
   cloud_config = local.openstack_glance_cloud_config
+
+  hostpci_mappings = [
+    "connectx-4-vf-5"
+  ]
 }
 
 module "openstack-glance-2" {
@@ -245,6 +249,10 @@ module "openstack-glance-2" {
   replacement = 1
 
   cloud_config = local.openstack_glance_cloud_config
+
+  hostpci_mappings = [
+    "connectx-4-vf-6"
+  ]
 }
 
 module "openstack-glance-3" {
@@ -264,6 +272,10 @@ module "openstack-glance-3" {
   replacement = 1
 
   cloud_config = local.openstack_glance_cloud_config
+
+  hostpci_mappings = [
+    "connectx-4-vf-7"
+  ]
 }
 
 # Cinder
@@ -314,6 +326,10 @@ module "openstack-cinder-2" {
   replacement = 1
 
   cloud_config = local.openstack_cinder_cloud_config
+
+  hostpci_mappings = [
+    "connectx-4-vf-3"
+  ]
 }
 
 module "openstack-cinder-3" {
@@ -333,5 +349,9 @@ module "openstack-cinder-3" {
   replacement = 1
 
   cloud_config = local.openstack_cinder_cloud_config
+
+  hostpci_mappings = [
+    "connectx-4-vf-4"
+  ]
 }
 
