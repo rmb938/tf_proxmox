@@ -291,6 +291,10 @@ module "openstack-cinder-1" {
   replacement = 8
 
   cloud_config = local.openstack_cinder_cloud_config
+
+  hostpci_mappings = [
+    "connectx-4-vf-2"
+  ]
 }
 
 module "openstack-cinder-2" {

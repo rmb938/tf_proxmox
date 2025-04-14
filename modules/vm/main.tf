@@ -130,6 +130,15 @@ resource "proxmox_virtual_environment_vm" "vm" {
     }
   }
 
+  dynamic "hostpci" {
+    for_each = var.hostpci_mappings
+    content {
+      device  = "hostpci${hostpci.key}"
+      mapping = hostpci.value
+      pcie    = true
+    }
+  }
+
   startup {
     order    = tostring(var.startup_order)
     up_delay = tostring(var.startup_delay)
