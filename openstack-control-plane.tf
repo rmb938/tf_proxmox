@@ -223,7 +223,7 @@ module "openstack-glance-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 4
+  replacement = 5
 
   cloud_config = local.openstack_glance_cloud_config
 
