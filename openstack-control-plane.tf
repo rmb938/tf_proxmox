@@ -300,7 +300,7 @@ module "openstack-cinder-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 3
+  replacement = 4
 
   cloud_config = local.openstack_cinder_cloud_config
 
@@ -323,7 +323,7 @@ module "openstack-cinder-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 3
+  replacement = 4
 
   cloud_config = local.openstack_cinder_cloud_config
 
@@ -346,7 +346,7 @@ module "openstack-cinder-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 3
+  replacement = 4
 
   cloud_config = local.openstack_cinder_cloud_config
 
