@@ -367,7 +367,7 @@ EOF
 module "openstack-ovn-northd-1" {
   source       = "./modules/vm"
   name         = "openstack-ovn-northd-1.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  image_family = "ubuntu-noble-lts-amd64-openstack-ovn-northd"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -379,7 +379,7 @@ module "openstack-ovn-northd-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 8
+  replacement      = 9
 
   cloud_config = local.openstack_ovn_northd_cloud_config
 }
