@@ -235,7 +235,7 @@ module "openstack-glance-1" {
 module "openstack-glance-2" {
   source       = "./modules/vm"
   name         = "openstack-glance-2.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  image_family = "ubuntu-noble-lts-amd64-openstack-glance"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -246,7 +246,7 @@ module "openstack-glance-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 2
+  replacement = 3
 
   cloud_config = local.openstack_glance_cloud_config
 
@@ -258,7 +258,7 @@ module "openstack-glance-2" {
 module "openstack-glance-3" {
   source       = "./modules/vm"
   name         = "openstack-glance-3.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  image_family = "ubuntu-noble-lts-amd64-openstack-glance"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -269,7 +269,7 @@ module "openstack-glance-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 2
+  replacement = 3
 
   cloud_config = local.openstack_glance_cloud_config
 
