@@ -379,7 +379,7 @@ module "openstack-ovn-northd-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 9
+  replacement      = 10
 
   cloud_config = local.openstack_ovn_northd_cloud_config
 }
