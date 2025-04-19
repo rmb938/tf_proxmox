@@ -20,7 +20,7 @@ module "prometheus" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 6
+  replacement      = 1
 
   cloud_config = local.prometheus_cloud_config
 }
