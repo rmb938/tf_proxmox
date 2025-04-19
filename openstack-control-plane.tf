@@ -380,7 +380,7 @@ module "openstack-ovn-northd-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 11
+  replacement      = 12
 
   cloud_config = local.openstack_ovn_northd_leader_cloud_config
 }
@@ -389,7 +389,7 @@ locals {
   openstack_ovn_northd_cloud_config = <<-EOF
 bootcmd:
   - /usr/bin/echo "CONSUL_ROLE=openstack-ovn-northd" >> /etc/cloud-environment
-  - /usr/bin/echo "OVN_REMOTE_ADDR=openstack-ovn-northd-1.us-homelab1.hl.rmb938.me" >> /etc/cloud-environment
+  - /usr/bin/echo "OVN_REMOTE_ADDR=openstack-ovn-northd-1.node.consul" >> /etc/cloud-environment
 EOF
 }
 
@@ -408,7 +408,7 @@ module "openstack-ovn-northd-2" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 11
+  replacement      = 12
 
   cloud_config = local.openstack_ovn_northd_cloud_config
 }
@@ -428,7 +428,7 @@ module "openstack-ovn-northd-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 11
+  replacement      = 12
 
   cloud_config = local.openstack_ovn_northd_cloud_config
 }
