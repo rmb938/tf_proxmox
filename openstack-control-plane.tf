@@ -358,9 +358,10 @@ module "openstack-cinder-3" {
 
 # OVN NorthD
 locals {
-  openstack_ovn_northd_cloud_config = <<-EOF
+  openstack_ovn_northd_leader_cloud_config = <<-EOF
 bootcmd:
   - /usr/bin/echo "CONSUL_ROLE=openstack-ovn-northd" >> /etc/cloud-environment
+  - /usr/bin/echo "OVN_REMOTE_ADDR=" >> /etc/cloud-environment
 EOF
 }
 
@@ -379,15 +380,23 @@ module "openstack-ovn-northd-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 10
+  replacement      = 9
 
-  cloud_config = local.openstack_ovn_northd_cloud_config
+  cloud_config = local.openstack_ovn_northd_leader_cloud_config
+}
+
+locals {
+  openstack_ovn_northd_cloud_config = <<-EOF
+bootcmd:
+  - /usr/bin/echo "CONSUL_ROLE=openstack-ovn-northd" >> /etc/cloud-environment
+  - /usr/bin/echo "OVN_REMOTE_ADDR=openstack-ovn-northd-1.us-homelab1.hl.rmb938.me" >> /etc/cloud-environment
+EOF
 }
 
 module "openstack-ovn-northd-2" {
   source       = "./modules/vm"
   name         = "openstack-ovn-northd-2.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  image_family = "ubuntu-noble-lts-amd64-openstack-ovn-northd"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -399,7 +408,7 @@ module "openstack-ovn-northd-2" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 8
+  replacement      = 9
 
   cloud_config = local.openstack_ovn_northd_cloud_config
 }
@@ -407,7 +416,7 @@ module "openstack-ovn-northd-2" {
 module "openstack-ovn-northd-3" {
   source       = "./modules/vm"
   name         = "openstack-ovn-northd-3.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_application # TODO:
+  image_family = "ubuntu-noble-lts-amd64-openstack-ovn-northd"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -419,7 +428,7 @@ module "openstack-ovn-northd-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 8
+  replacement      = 9
 
   cloud_config = local.openstack_ovn_northd_cloud_config
 }
