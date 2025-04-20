@@ -455,7 +455,7 @@ module "openstack-neutron-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_neutron_cloud_config
 }
@@ -474,7 +474,7 @@ module "openstack-neutron-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_neutron_cloud_config
 }
@@ -493,7 +493,7 @@ module "openstack-neutron-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_neutron_cloud_config
 }
