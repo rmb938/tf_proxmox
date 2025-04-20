@@ -455,7 +455,45 @@ module "openstack-neutron-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 2
+  replacement = 1
+
+  cloud_config = local.openstack_neutron_cloud_config
+}
+
+module "openstack-neutron-2" {
+  source       = "./modules/vm"
+  name         = "openstack-neutron-2.us-homelab1.hl.rmb938.me"
+  image_family = "ubuntu-noble-lts-amd64-openstack-neutron"
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.92/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 1
+
+  cloud_config = local.openstack_neutron_cloud_config
+}
+
+module "openstack-neutron-3" {
+  source       = "./modules/vm"
+  name         = "openstack-neutron-3.us-homelab1.hl.rmb938.me"
+  image_family = "ubuntu-noble-lts-amd64-openstack-neutron"
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.93/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 1
 
   cloud_config = local.openstack_neutron_cloud_config
 }
