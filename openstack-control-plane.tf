@@ -437,7 +437,7 @@ module "openstack-ovn-northd-3" {
 locals {
   openstack_neutron_cloud_config = <<-EOF
 bootcmd:
-  - /usr/bin/echo "CONSUL_ROLE=neutron" >> /etc/cloud-environment
+  - /usr/bin/echo "CONSUL_ROLE=openstack-neutron" >> /etc/cloud-environment
 EOF
 }
 
@@ -455,7 +455,7 @@ module "openstack-neutron-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_neutron_cloud_config
 }
