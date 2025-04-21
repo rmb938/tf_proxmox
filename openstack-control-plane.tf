@@ -497,3 +497,30 @@ module "openstack-neutron-3" {
 
   cloud_config = local.openstack_neutron_cloud_config
 }
+
+# Placement
+locals {
+  openstack_placement_cloud_config = <<-EOF
+bootcmd:
+  - /usr/bin/echo "CONSUL_ROLE=openstack-placement" >> /etc/cloud-environment
+EOF
+}
+
+module "openstack-placement-1" {
+  source       = "./modules/vm"
+  name         = "openstack-placement-1.us-homelab1.hl.rmb938.me"
+  image_family = "ubuntu-noble-lts-amd64-openstack-placement"
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.85/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 2
+
+  cloud_config = local.openstack_placement_cloud_config
+}
