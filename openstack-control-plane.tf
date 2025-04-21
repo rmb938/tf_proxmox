@@ -520,7 +520,7 @@ module "openstack-placement-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 2
+  replacement = 3
 
   cloud_config = local.openstack_placement_cloud_config
 }
