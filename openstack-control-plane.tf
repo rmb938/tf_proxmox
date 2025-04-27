@@ -157,7 +157,7 @@ module "openstack-keystone-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -176,7 +176,7 @@ module "openstack-keystone-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -195,7 +195,7 @@ module "openstack-keystone-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -520,7 +520,7 @@ module "openstack-placement-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_placement_cloud_config
 }
@@ -539,7 +539,7 @@ module "openstack-placement-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_placement_cloud_config
 }
@@ -559,7 +559,7 @@ module "openstack-placement-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_placement_cloud_config
 }
@@ -586,7 +586,7 @@ module "openstack-nova-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 4
+  replacement = 5
 
   cloud_config = local.openstack_nova_controller_cloud_config
 }
