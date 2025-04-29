@@ -223,7 +223,7 @@ module "openstack-glance-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_glance_cloud_config
 
@@ -246,7 +246,7 @@ module "openstack-glance-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_glance_cloud_config
 
@@ -269,7 +269,7 @@ module "openstack-glance-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_glance_cloud_config
 
@@ -300,7 +300,7 @@ module "openstack-cinder-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_cinder_cloud_config
 
@@ -323,7 +323,7 @@ module "openstack-cinder-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_cinder_cloud_config
 
@@ -346,7 +346,7 @@ module "openstack-cinder-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_cinder_cloud_config
 
