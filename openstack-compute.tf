@@ -18,7 +18,8 @@ module "openstack-compute-1" {
   }
 
   additional_network_device_bridges = [
-    "vmbr0v72"
+    "vmbr0v72",
+    "vmbr0v52"
   ]
 
   cpu         = 1
@@ -27,6 +28,7 @@ module "openstack-compute-1" {
 
   cloud_config = local.openstack_compute_cloud_config
 
+  # TODO: remove this when we adjust compute ansible to allow network-only nodes
   hostpci_mappings = [
     "connectx-4-vf-8"
   ]
