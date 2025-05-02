@@ -148,6 +148,13 @@ resource "proxmox_virtual_environment_vm" "vm" {
     bridge = var.network_device_bridge
   }
 
+  dynamic "network_device" {
+    for_each = var.additional_network_device_bridges
+    content {
+      bridge = network_device.value
+    }
+  }
+
   initialization {
     datastore_id = var.datastore_id
 

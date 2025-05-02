@@ -22,6 +22,11 @@ variable "network_device_bridge" {
   type = string
 }
 
+variable "additional_network_device_bridges" {
+  type    = list(string)
+  default = []
+}
+
 variable "ip_config_ipv4" {
   type = object({
     address = string
