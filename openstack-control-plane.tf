@@ -157,7 +157,7 @@ module "openstack-keystone-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -176,7 +176,7 @@ module "openstack-keystone-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -195,7 +195,7 @@ module "openstack-keystone-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_keystone_cloud_config
 }
@@ -223,7 +223,7 @@ module "openstack-glance-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_glance_cloud_config
 
@@ -246,7 +246,7 @@ module "openstack-glance-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_glance_cloud_config
 
@@ -269,7 +269,7 @@ module "openstack-glance-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_glance_cloud_config
 
@@ -300,7 +300,7 @@ module "openstack-cinder-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_cinder_cloud_config
 
@@ -323,7 +323,7 @@ module "openstack-cinder-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_cinder_cloud_config
 
@@ -346,7 +346,7 @@ module "openstack-cinder-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_cinder_cloud_config
 
@@ -380,7 +380,7 @@ module "openstack-ovn-northd-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 3
 
   cloud_config = local.openstack_ovn_northd_leader_cloud_config
 }
@@ -408,7 +408,7 @@ module "openstack-ovn-northd-2" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 3
 
   cloud_config = local.openstack_ovn_northd_cloud_config
 }
@@ -428,7 +428,7 @@ module "openstack-ovn-northd-3" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 3
 
   cloud_config = local.openstack_ovn_northd_cloud_config
 }
@@ -520,7 +520,7 @@ module "openstack-placement-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_placement_cloud_config
 }
@@ -539,7 +539,7 @@ module "openstack-placement-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_placement_cloud_config
 }
@@ -559,7 +559,7 @@ module "openstack-placement-3" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_placement_cloud_config
 }
@@ -581,6 +581,44 @@ module "openstack-nova-1" {
   network_device_bridge = "vmbr0v23"
   ip_config_ipv4 = {
     address = "192.168.23.88/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 5
+
+  cloud_config = local.openstack_nova_controller_cloud_config
+}
+
+module "openstack-nova-2" {
+  source       = "./modules/vm"
+  name         = "openstack-nova-2.us-homelab1.hl.rmb938.me"
+  image_family = "ubuntu-noble-lts-amd64-openstack-nova"
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.89/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 3
+
+  cloud_config = local.openstack_nova_controller_cloud_config
+}
+
+module "openstack-nova-3" {
+  source       = "./modules/vm"
+  name         = "openstack-nova-3.us-homelab1.hl.rmb938.me"
+  image_family = "ubuntu-noble-lts-amd64-openstack-nova"
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.90/${local.vmbr0v23_cidr}"
     gateway = local.vmbr0v23_gateway
   }
 
