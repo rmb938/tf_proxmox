@@ -645,7 +645,7 @@ module "openstack-octavia-1" {
 
   network_device_bridge = "vmbr0v23"
   ip_config_ipv4 = {
-    address = "192.168.23.96/${local.vmbr0v23_cidr}"
+    address = "192.168.23.94/${local.vmbr0v23_cidr}"
     gateway = local.vmbr0v23_gateway
   }
 
