@@ -24,7 +24,7 @@ module "openstack-compute-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.openstack_compute_cloud_config
 
