@@ -35,7 +35,7 @@ module "haproxy-t1-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.haproxy_t1_cloud_config
 
@@ -56,7 +56,7 @@ module "haproxy-t1-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.haproxy_t1_cloud_config
 }
@@ -75,7 +75,7 @@ module "haproxy-t2-1" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.haproxy_t2_cloud_config
 
@@ -97,7 +97,7 @@ module "haproxy-t2-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 1
+  replacement = 2
 
   cloud_config = local.haproxy_t2_cloud_config
 }
