@@ -1,7 +1,14 @@
+locals {
+  devstack_cloud_config = <<-EOF
+bootcmd:
+  - /usr/bin/echo "CONSUL_ROLE=devstack" >> /etc/cloud-environment
+EOF
+}
+
 module "devstack" {
   source       = "./modules/vm"
   name         = "devstack.us-homelab1.hl.rmb938.me"
-  image_family = local.family_ubuntu_noble_lts_amd64_hardened
+  image_family = "ubuntu-noble-lts-amd64-devstack"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -10,7 +17,10 @@ module "devstack" {
     gateway = local.vmbr0v23_gateway
   }
 
-  cpu         = 4
-  memory      = 16 * 1024
-  replacement = 2
+  cpu              = 4
+  memory           = 16 * 1024
+  additional_disks = [5]
+  replacement      = 3
+
+  cloud_config = local.devstack_cloud_config
 }
