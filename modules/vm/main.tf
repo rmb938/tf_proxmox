@@ -45,8 +45,7 @@ hostname: ${split(".", "${var.name}")[0]}
 fqdn: ${var.name}
 users:
   - name: ubuntu
-    ssh_authorized_keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFutfN7VVJImc1/URq84u6Vn/85Qj9G3B1zqORh31TT9 rbelgrave@magic-pie.rmb938.me
+    ssh_authorized_keys: ${jsonencode(var.ssh_authorized_keys)}
 ${var.cloud_config}
 EOF
 

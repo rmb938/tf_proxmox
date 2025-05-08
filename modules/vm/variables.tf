@@ -66,3 +66,13 @@ variable "hostpci_mappings" {
   type    = list(string)
   default = []
 }
+
+variable "ssh_authorized_keys" {
+  type = list(string)
+  default = [
+    # Linux Desktop
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFutfN7VVJImc1/URq84u6Vn/85Qj9G3B1zqORh31TT9",
+    # Linux DevStack VM
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCGiaxV7RwUW0tez+Qk1kLPRJbbjDcAEGSw0EsARv/c"
+  ]
+}
