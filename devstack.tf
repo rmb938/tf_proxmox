@@ -12,5 +12,5 @@ module "devstack" {
 
   cpu         = 4
   memory      = 16 * 1024
-  replacement = 1
+  replacement = 2
 }

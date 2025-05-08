@@ -13,7 +13,7 @@ module "elasticsearch" {
   cpu              = 1
   memory           = 16 * 1024
   additional_disks = [100]
-  replacement      = 2
+  replacement      = 3
 
   # Make sure elastic is started first
   # and it needs to wait 5 minutes
