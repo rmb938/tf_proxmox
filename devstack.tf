@@ -20,7 +20,7 @@ module "devstack" {
   cpu              = 4
   memory           = 16 * 1024
   additional_disks = [5]
-  replacement      = 5
+  replacement      = 6
 
   cloud_config = local.devstack_cloud_config
 }
