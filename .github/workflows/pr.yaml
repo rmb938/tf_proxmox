@@ -43,4 +43,4 @@ jobs:
         env:
           PROXMOX_VE_API_TOKEN: ${{ secrets.PROXMOX_VE_API_TOKEN }}
           PROXMOX_VE_SSH_PRIVATE_KEY: ${{ secrets.PROXMOX_VE_SSH_PRIVATE_KEY }}
-        run: terraform plan -out tfplan
+        run: terraform plan -parallelism=2 -out tfplan
