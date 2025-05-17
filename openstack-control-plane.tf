@@ -655,3 +655,41 @@ module "openstack-octavia-1" {
 
   cloud_config = local.openstack_octavia_cloud_config
 }
+
+module "openstack-octavia-2" {
+  source       = "./modules/vm"
+  name         = "openstack-octavia-2.us-homelab1.hl.rmb938.me"
+  image_family = "ubuntu-noble-lts-amd64-openstack-octavia"
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.95/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 6
+
+  cloud_config = local.openstack_octavia_cloud_config
+}
+
+module "openstack-octavia-3" {
+  source       = "./modules/vm"
+  name         = "openstack-octavia-3.us-homelab1.hl.rmb938.me"
+  image_family = "ubuntu-noble-lts-amd64-openstack-octavia"
+  datastore_id = local.freenas_nfs_datastore
+
+  network_device_bridge = "vmbr0v23"
+  ip_config_ipv4 = {
+    address = "192.168.23.96/${local.vmbr0v23_cidr}"
+    gateway = local.vmbr0v23_gateway
+  }
+
+  cpu         = 1
+  memory      = 2 * 1024
+  replacement = 6
+
+  cloud_config = local.openstack_octavia_cloud_config
+}
