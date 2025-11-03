@@ -1,5 +1,5 @@
 locals {
-  devstack_cloud_config = <<-EOF
+  minio_cloud_config = <<-EOF
 bootcmd:
   - /usr/bin/echo "CONSUL_ROLE=minio" >> /etc/cloud-environment
 EOF
@@ -22,5 +22,5 @@ module "minio-1" {
   additional_disks = [100]
   replacement      = 2
 
-  cloud_config = local.devstack_cloud_config
+  cloud_config = local.minio_cloud_config
 }
