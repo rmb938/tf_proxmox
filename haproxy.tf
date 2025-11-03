@@ -97,7 +97,7 @@ module "haproxy-t2-2" {
 
   cpu         = 1
   memory      = 2 * 1024
-  replacement = 2
+  replacement = 3
 
   cloud_config = local.haproxy_t2_cloud_config
 }
