@@ -8,7 +8,7 @@ EOF
 module "minio-1" {
   source       = "./modules/vm"
   name         = "minio-1.us-homelab1.hl.rmb938.me"
-  image_family = "ubuntu-noble-lts-amd64-minio"
+  image_family = "ubuntu-noble-lts-amd64-garage"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
