@@ -17,8 +17,8 @@ module "minio-1" {
     gateway = local.vmbr0v23_gateway
   }
 
-  cpu              = 4
-  memory           = 8 * 1024
+  cpu              = 2
+  memory           = 4 * 1024
   additional_disks = [100]
   replacement      = 7
 
