@@ -20,7 +20,7 @@ module "minio-1" {
   cpu              = 1
   memory           = 2 * 1024
   additional_disks = [100]
-  replacement      = 3
+  replacement      = 4
 
   cloud_config = local.minio_cloud_config
 }
