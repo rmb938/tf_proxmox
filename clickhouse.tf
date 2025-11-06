@@ -8,7 +8,7 @@ EOF
 module "clickhouse-1" {
   source       = "./modules/vm"
   name         = "clickhouse-1.us-homelab1.hl.rmb938.me"
-  image_family = "ubuntu-noble-lts-amd64-application"
+  image_family = "ubuntu-noble-lts-amd64-clickhouse"
   datastore_id = local.freenas_nfs_datastore
 
   network_device_bridge = "vmbr0v23"
@@ -20,7 +20,7 @@ module "clickhouse-1" {
   cpu              = 2
   memory           = 8 * 1024
   additional_disks = [100]
-  replacement      = 1
+  replacement      = 2
 
   cloud_config = local.clickhouse_cloud_config
 }
