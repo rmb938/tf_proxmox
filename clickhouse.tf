@@ -20,7 +20,7 @@ module "clickhouse-1" {
   cpu              = 2
   memory           = 8 * 1024
   additional_disks = [100]
-  replacement      = 2
+  replacement      = 3
 
   cloud_config = local.clickhouse_cloud_config
 }
