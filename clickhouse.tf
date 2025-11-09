@@ -18,7 +18,7 @@ module "clickhouse-1" {
   }
 
   cpu              = 2
-  memory           = 8 * 1024
+  memory           = 10 * 1024
   additional_disks = [100]
   replacement      = 2
 
