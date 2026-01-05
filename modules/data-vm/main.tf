@@ -20,6 +20,10 @@ resource "proxmox_virtual_environment_vm" "data_vm" {
     ]
   }
 
+  cpu {
+    cores = 1
+  }
+
   name      = "data-${random_uuid.data_vm.result}"
   node_name = var.node_name
   started   = false
